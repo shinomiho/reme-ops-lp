@@ -73,18 +73,24 @@
     @media (max-width: 768px) { .hero h1 { font-size: 28px; } .hero { padding: 40px 20px 60px; } }
 
     /* HERO ILLUSTRATION */
-    .hero-illust { position: relative; height: 360px; }
-    .hero-illust-blob { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(124,110,224,.4), transparent 70%); filter: blur(40px); }
-    .hero-illust-card { position: absolute; background: var(--bg-card-2); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 16px; padding: 14px 18px; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
-    .hero-illust-card.stripe { top: 20px; left: 30px; }
-    .hero-illust-card.engine { top: 130px; left: 50%; transform: translateX(-50%); }
-    .hero-illust-card.freee { top: 240px; right: 30px; }
-    .arrow-down { position: absolute; left: 50%; transform: translateX(-50%); font-size: 24px; color: var(--accent-light); }
-    .arrow-down.a1 { top: 100px; }
-    .arrow-down.a2 { top: 210px; }
-    .hero-illust-card .lbl { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 2px; margin-bottom: 4px; }
-    .hero-illust-card .v { font-size: 14px; font-weight: 800; }
-    .hero-illust-card .em { font-size: 24px; margin-bottom: 6px; }
+    .hero-illust { position: relative; }
+    .hero-svg { width: 100%; height: auto; max-width: 480px; margin: 0 auto; display: block; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .float-1 { animation: float 4s ease-in-out infinite; }
+    .float-2 { animation: float 4s ease-in-out infinite 1s; }
+    .float-3 { animation: float 4s ease-in-out infinite 2s; }
+
+    /* PRODUCT PREVIEW */
+    .preview { background: var(--bg-mid); }
+    .preview-mockup { background: linear-gradient(135deg, rgba(124,110,224,.08), rgba(0,212,255,.04)); border: 1px solid var(--border); border-radius: 16px; padding: 14px; margin-top: 30px; position: relative; }
+    .preview-mockup .browser-bar { display: flex; gap: 6px; align-items: center; padding: 6px 10px; margin-bottom: 8px; }
+    .preview-mockup .browser-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .preview-mockup .browser-bar .url { flex: 1; background: rgba(255,255,255,.05); border-radius: 6px; padding: 4px 12px; font-size: 11px; color: var(--muted); font-family: ui-monospace, monospace; margin-left: 12px; }
+    .preview-mockup-svg { width: 100%; height: auto; border-radius: 10px; display: block; }
+    .preview-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 24px; }
+    .preview-feature { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; font-size: 13px; }
+    .preview-feature .h { font-weight: 800; margin-bottom: 4px; }
+    .preview-feature .b { color: var(--text-soft); font-size: 12px; }
 
     /* セクション共通 */
     section.block { padding: 80px 24px; position: relative; }
@@ -271,31 +277,100 @@
       <span class="hero-cta-sub">30分・押し売りなし</span>
     </div>
 
-    <!-- HERO ILLUSTRATION: フロー図 -->
+    <!-- HERO ILLUSTRATION: ワークスペース＋自動化 -->
     <div class="hero-illust">
-      <div class="hero-illust-blob"></div>
+      <svg class="hero-svg" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- ぼんやりした背景 -->
+        <defs>
+          <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#7c6ee0" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#7c6ee0" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="screenGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#a78bfa"/>
+            <stop offset="1" stop-color="#00d4ff"/>
+          </linearGradient>
+          <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop stop-color="rgba(255,255,255,0.15)"/>
+            <stop offset="1" stop-color="rgba(255,255,255,0.05)"/>
+          </linearGradient>
+        </defs>
+        <circle cx="240" cy="240" r="220" fill="url(#bgGlow)"/>
 
-      <div class="hero-illust-card stripe">
-        <div class="lbl">PAYMENT</div>
-        <div class="em">💳</div>
-        <div class="v">Stripe決済</div>
-      </div>
+        <!-- 中央：モニターと管理画面 -->
+        <g>
+          <!-- モニター本体 -->
+          <rect x="120" y="140" width="240" height="160" rx="12" fill="#1a1640" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <rect x="130" y="150" width="220" height="140" rx="6" fill="#0c0a2e"/>
 
-      <div class="arrow-down a1">↓</div>
+          <!-- 画面の中：ダッシュボードのモック -->
+          <rect x="140" y="160" width="80" height="20" rx="4" fill="url(#screenGrad)" opacity="0.7"/>
+          <rect x="225" y="160" width="115" height="20" rx="4" fill="rgba(255,255,255,0.06)"/>
 
-      <div class="hero-illust-card engine">
-        <div class="lbl">AUTOMATION</div>
-        <div class="em">🤖</div>
-        <div class="v">Re:Me OPS</div>
-      </div>
+          <rect x="140" y="190" width="60" height="40" rx="6" fill="rgba(167,139,250,0.2)" stroke="#a78bfa" stroke-width="1"/>
+          <rect x="143" y="195" width="20" height="3" rx="1" fill="#a78bfa"/>
+          <rect x="143" y="205" width="35" height="8" rx="2" fill="#fff"/>
+          <rect x="143" y="218" width="25" height="3" rx="1" fill="rgba(255,255,255,0.5)"/>
 
-      <div class="arrow-down a2">↓</div>
+          <rect x="210" y="190" width="60" height="40" rx="6" fill="rgba(0,212,255,0.15)" stroke="#00d4ff" stroke-width="1"/>
+          <rect x="213" y="195" width="20" height="3" rx="1" fill="#00d4ff"/>
+          <rect x="213" y="205" width="35" height="8" rx="2" fill="#fff"/>
+          <rect x="213" y="218" width="25" height="3" rx="1" fill="rgba(255,255,255,0.5)"/>
 
-      <div class="hero-illust-card freee">
-        <div class="lbl">ACCOUNTING</div>
-        <div class="em">📒</div>
-        <div class="v">freee自動記帳</div>
-      </div>
+          <rect x="280" y="190" width="60" height="40" rx="6" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+          <rect x="283" y="195" width="20" height="3" rx="1" fill="#10b981"/>
+          <rect x="283" y="205" width="35" height="8" rx="2" fill="#fff"/>
+          <rect x="283" y="218" width="25" height="3" rx="1" fill="rgba(255,255,255,0.5)"/>
+
+          <!-- データ行 -->
+          <rect x="140" y="240" width="200" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+          <rect x="140" y="252" width="200" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+          <rect x="140" y="264" width="160" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+          <rect x="140" y="276" width="180" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+
+          <!-- スタンド -->
+          <rect x="220" y="300" width="40" height="20" rx="3" fill="#1a1640"/>
+          <rect x="190" y="318" width="100" height="6" rx="2" fill="#1a1640"/>
+        </g>
+
+        <!-- 周りに浮かぶ要素 -->
+        <!-- Stripeバッジ (左上) -->
+        <g class="float-1">
+          <rect x="30" y="60" width="90" height="60" rx="12" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="75" y="92" text-anchor="middle" font-size="22" fill="#ff5ad2">💳</text>
+          <text x="75" y="110" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-weight="700">STRIPE</text>
+        </g>
+
+        <!-- freeeバッジ (右上) -->
+        <g class="float-2">
+          <rect x="360" y="60" width="90" height="60" rx="12" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="405" y="92" text-anchor="middle" font-size="22" fill="#00d4ff">📒</text>
+          <text x="405" y="110" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-weight="700">FREEE</text>
+        </g>
+
+        <!-- JVバッジ (左下) -->
+        <g class="float-3">
+          <rect x="20" y="360" width="90" height="60" rx="12" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="65" y="392" text-anchor="middle" font-size="22" fill="#fbbf24">🤝</text>
+          <text x="65" y="410" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-weight="700">JV計算</text>
+        </g>
+
+        <!-- セキュアバッジ (右下) -->
+        <g class="float-1">
+          <rect x="370" y="360" width="90" height="60" rx="12" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="415" y="392" text-anchor="middle" font-size="22" fill="#10b981">🛡</text>
+          <text x="415" y="410" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-weight="700">SECURE</text>
+        </g>
+
+        <!-- 接続線 (Stripe → モニター) -->
+        <path d="M120 90 Q170 110 145 160" stroke="rgba(167,139,250,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+        <!-- freee → モニター -->
+        <path d="M360 90 Q310 110 335 160" stroke="rgba(0,212,255,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+        <!-- JV → モニター -->
+        <path d="M110 360 Q150 330 165 300" stroke="rgba(251,191,36,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+        <!-- セキュア → モニター -->
+        <path d="M370 360 Q330 330 315 300" stroke="rgba(16,185,129,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+      </svg>
     </div>
   </div>
 </section>
@@ -598,6 +673,126 @@
         <div class="icon-circle">💬</div>
         <div class="head">運用サポート付き</div>
         <div class="body">セットアップから運用まで、リミー代表・四戸が直接サポート。設定変更・カスタマイズ・トラブル対応もメール/LINEで随時相談OK。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT PREVIEW -->
+<section class="block preview">
+  <div class="block-inner">
+    <div class="block-label">PREVIEW</div>
+    <h2 class="block-title">実際の管理画面</h2>
+    <p class="block-sub">
+      決済の受信状況、freee記帳の成否、JV紹介料の計算結果が一目でわかる専用ダッシュボード。
+    </p>
+
+    <div class="preview-mockup">
+      <div class="browser-bar">
+        <div class="dot" style="background:#ff5f57;"></div>
+        <div class="dot" style="background:#febc2e;"></div>
+        <div class="dot" style="background:#28c840;"></div>
+        <div class="url">https://reme-ops.remeops.workers.dev/c/your-company/admin</div>
+      </div>
+
+      <svg class="preview-mockup-svg" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="headBg" x1="0" y1="0" x2="1" y2="0">
+            <stop stop-color="#4F46E5"/>
+            <stop offset="1" stop-color="#7C3AED"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="720" height="420" fill="#fafaf7"/>
+
+        <rect width="720" height="80" fill="url(#headBg)"/>
+        <text x="24" y="35" fill="rgba(255,255,255,0.7)" font-size="9" font-weight="700">RE:ME OPS › 全クライアント › 〇〇株式会社</text>
+        <text x="24" y="58" fill="white" font-size="18" font-weight="900">〇〇株式会社 の管理画面</text>
+        <text x="24" y="73" fill="rgba(255,255,255,0.7)" font-size="10">slug: client · このクライアントの決済・仕訳状況を確認できます</text>
+
+        <rect x="24" y="100" width="60" height="30" rx="4" fill="white" stroke="#4F46E5" stroke-width="2"/>
+        <text x="54" y="120" text-anchor="middle" fill="#4F46E5" font-size="10" font-weight="800">決済</text>
+        <text x="130" y="120" text-anchor="middle" fill="#666" font-size="10">JV紹介料</text>
+        <text x="216" y="120" text-anchor="middle" fill="#666" font-size="10">freee仕訳</text>
+        <text x="307" y="120" text-anchor="middle" fill="#666" font-size="10">JVパートナー</text>
+
+        <rect x="24" y="150" width="672" height="32" fill="#f5f5f0"/>
+        <text x="36" y="170" fill="#666" font-size="9" font-weight="700">受信日時</text>
+        <text x="130" y="170" fill="#666" font-size="9" font-weight="700">charge_id</text>
+        <text x="280" y="170" fill="#666" font-size="9" font-weight="700">金額</text>
+        <text x="370" y="170" fill="#666" font-size="9" font-weight="700">顧客</text>
+        <text x="510" y="170" fill="#666" font-size="9" font-weight="700">JV</text>
+        <text x="570" y="170" fill="#666" font-size="9" font-weight="700">ステータス</text>
+
+        <rect x="24" y="184" width="672" height="36" fill="white"/>
+        <line x1="24" y1="220" x2="696" y2="220" stroke="#eee"/>
+        <text x="36" y="205" fill="#1a1a1a" font-size="10">2026/06/21 14:32</text>
+        <text x="130" y="205" fill="#4F46E5" font-size="10" font-family="monospace">cs_live_a8f...</text>
+        <text x="280" y="205" fill="#1a1a1a" font-size="10" font-weight="700">¥49,800</text>
+        <text x="370" y="205" fill="#1a1a1a" font-size="10">tanaka@example.com</text>
+        <text x="510" y="205" fill="#1a1a1a" font-size="10">JV01</text>
+        <rect x="565" y="195" width="65" height="14" rx="7" fill="#d1fae5"/>
+        <text x="597" y="205" text-anchor="middle" fill="#065f46" font-size="8" font-weight="800">SUCCEEDED</text>
+
+        <rect x="24" y="222" width="672" height="36" fill="white"/>
+        <line x1="24" y1="258" x2="696" y2="258" stroke="#eee"/>
+        <text x="36" y="243" fill="#1a1a1a" font-size="10">2026/06/21 13:15</text>
+        <text x="130" y="243" fill="#4F46E5" font-size="10" font-family="monospace">cs_live_b32...</text>
+        <text x="280" y="243" fill="#1a1a1a" font-size="10" font-weight="700">¥99,800</text>
+        <text x="370" y="243" fill="#1a1a1a" font-size="10">yamada@example.com</text>
+        <text x="510" y="243" fill="#1a1a1a" font-size="10">-</text>
+        <rect x="565" y="233" width="65" height="14" rx="7" fill="#d1fae5"/>
+        <text x="597" y="243" text-anchor="middle" fill="#065f46" font-size="8" font-weight="800">SUCCEEDED</text>
+
+        <rect x="24" y="260" width="672" height="36" fill="white"/>
+        <line x1="24" y1="296" x2="696" y2="296" stroke="#eee"/>
+        <text x="36" y="281" fill="#1a1a1a" font-size="10">2026/06/21 11:08</text>
+        <text x="130" y="281" fill="#4F46E5" font-size="10" font-family="monospace">cs_live_c91...</text>
+        <text x="280" y="281" fill="#1a1a1a" font-size="10" font-weight="700">¥29,800</text>
+        <text x="370" y="281" fill="#1a1a1a" font-size="10">sato@example.com</text>
+        <text x="510" y="281" fill="#1a1a1a" font-size="10">JV02</text>
+        <rect x="565" y="271" width="65" height="14" rx="7" fill="#d1fae5"/>
+        <text x="597" y="281" text-anchor="middle" fill="#065f46" font-size="8" font-weight="800">SUCCEEDED</text>
+
+        <rect x="24" y="298" width="672" height="36" fill="white"/>
+        <line x1="24" y1="334" x2="696" y2="334" stroke="#eee"/>
+        <text x="36" y="319" fill="#1a1a1a" font-size="10">2026/06/21 10:45</text>
+        <text x="130" y="319" fill="#4F46E5" font-size="10" font-family="monospace">cs_live_d44...</text>
+        <text x="280" y="319" fill="#1a1a1a" font-size="10" font-weight="700">¥19,800</text>
+        <text x="370" y="319" fill="#1a1a1a" font-size="10">kato@example.com</text>
+        <text x="510" y="319" fill="#1a1a1a" font-size="10">JV01</text>
+        <rect x="565" y="309" width="65" height="14" rx="7" fill="#fef3c7"/>
+        <text x="597" y="319" text-anchor="middle" fill="#92400e" font-size="8" font-weight="800">RETRY</text>
+
+        <rect x="24" y="336" width="672" height="36" fill="white"/>
+        <text x="36" y="357" fill="#1a1a1a" font-size="10">2026/06/21 09:12</text>
+        <text x="130" y="357" fill="#4F46E5" font-size="10" font-family="monospace">cs_live_e62...</text>
+        <text x="280" y="357" fill="#1a1a1a" font-size="10" font-weight="700">¥199,800</text>
+        <text x="370" y="357" fill="#1a1a1a" font-size="10">suzuki@example.com</text>
+        <text x="510" y="357" fill="#1a1a1a" font-size="10">-</text>
+        <rect x="565" y="347" width="65" height="14" rx="7" fill="#d1fae5"/>
+        <text x="597" y="357" text-anchor="middle" fill="#065f46" font-size="8" font-weight="800">SUCCEEDED</text>
+
+        <text x="36" y="400" fill="#666" font-size="9">本日の決済: 5件 · 合計 ¥399,000 · freee同期成功 4件</text>
+      </svg>
+    </div>
+
+    <div class="preview-cards">
+      <div class="preview-feature">
+        <div class="h">⚡ リアルタイム更新</div>
+        <div class="b">決済が発生した瞬間に画面に反映。月末に「あれ、入ってない？」を防ぐ。</div>
+      </div>
+      <div class="preview-feature">
+        <div class="h">🔍 検索＆フィルタ</div>
+        <div class="b">顧客名・期間・ステータスで絞り込み。月次集計もワンクリック。</div>
+      </div>
+      <div class="preview-feature">
+        <div class="h">🔄 再同期ボタン</div>
+        <div class="b">freee側のエラーを発見したら、ワンクリックで再同期。手作業不要。</div>
+      </div>
+      <div class="preview-feature">
+        <div class="h">📱 スマホ対応</div>
+        <div class="b">外出先からiPhoneで状況確認OK。経営者の機動力を犠牲にしない。</div>
       </div>
     </div>
   </div>
