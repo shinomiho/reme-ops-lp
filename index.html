@@ -299,15 +299,15 @@
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-badge">経理オールインワン・自動化サービス</div>
+      <div class="hero-badge">契約書・決済・記帳まで オールインワン自動化</div>
       <h1>
         オンラインスクールの<span class="accent">経理は、もう自分でやらない。</span>
       </h1>
       <p class="sub">
-        案件ごとに、契約書・決済・請求書・入金管理が<span class="hl-pain">バラバラのツール</span>。<br>
+        案件ごとに、<strong style="color:#fff;">契約書締結・決済・請求書・入金管理・記帳</strong> が<span class="hl-pain">バラバラのツール</span>。<br>
         月末の<span class="hl-warn">付き合わせ作業</span>に何時間も奪われていませんか？<br>
-        Re:Me OPSは、決済→記帳の最後のひと手間を自動化。<br>
-        <span class="hl-solve">経理派遣の半額</span>で、その苦痛を終わらせます。
+        Re:Me OPSは、契約から記帳までを<span class="hl-solve">一気通貫で自動化</span>。<br>
+        決済は <strong style="color:#fff;">StripeでもUnivapayでも</strong>、好きな方を使えます。
       </p>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -384,11 +384,12 @@
         </g>
 
         <!-- 周りに浮かぶ要素 -->
-        <!-- Stripeバッジ (左上) -->
+        <!-- Stripe/Univapayバッジ (左上) -->
         <g class="float-1">
           <rect x="30" y="60" width="90" height="60" rx="12" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-          <text x="75" y="92" text-anchor="middle" font-size="22" fill="#ff5ad2">💳</text>
-          <text x="75" y="110" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-weight="700">STRIPE</text>
+          <text x="75" y="88" text-anchor="middle" font-size="20" fill="#ff5ad2">💳</text>
+          <text x="75" y="104" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.7)" font-weight="700">STRIPE</text>
+          <text x="75" y="116" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.7)" font-weight="700">/UNIVAPAY</text>
         </g>
 
         <!-- freeeバッジ (右上) -->
@@ -654,9 +655,14 @@
 
       <div class="aio-items">
         <div class="aio-item">
+          <div class="em">📝</div>
+          <div class="name">契約書締結</div>
+          <div class="sub">GMOサイン連携<br>案件発生で自動発行</div>
+        </div>
+        <div class="aio-item">
           <div class="em">📥</div>
-          <div class="name">Stripe決済取り込み</div>
-          <div class="sub">webhook自動受信<br>署名検証付き</div>
+          <div class="name">決済取り込み</div>
+          <div class="sub">Stripe / Univapay<br>両対応・自動受信</div>
         </div>
         <div class="aio-item">
           <div class="em">🏷️</div>
@@ -676,15 +682,69 @@
         <div class="aio-item">
           <div class="em">🔄</div>
           <div class="name">エラー自動再試行</div>
-          <div class="sub">freee障害でも<br>1時間以内に復旧</div>
+          <div class="sub">障害でも<br>1時間以内に復旧</div>
         </div>
         <div class="aio-item">
           <div class="em">📊</div>
           <div class="name">専用管理画面</div>
-          <div class="sub">決済・記帳・JVを<br>リアルタイム確認</div>
+          <div class="sub">全項目を一望<br>リアルタイム確認</div>
+        </div>
+        <div class="aio-item">
+          <div class="em">🛡</div>
+          <div class="name">セキュアな設計</div>
+          <div class="sub">ログイン情報を<br>お預かりしない</div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- 決済プロセッサ -->
+<section class="block" style="background:var(--bg);">
+  <div class="block-inner">
+    <div class="block-label">PAYMENT FLEXIBILITY</div>
+    <h2 class="block-title">決済は <span style="background:linear-gradient(135deg,#a78bfa,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Stripe / Univapay</span> どちらでもOK</h2>
+    <p class="block-sub">
+      「Stripeは凍結リスクが心配」「日本企業のUnivapayの方が安心」<br>
+      そんな声に応えて、両方の決済プロセッサに対応しています。<br>
+      <strong style="color:#fff;">切り替えも、併用もOK。</strong>
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px;">
+      <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:18px;padding:28px;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+          <div style="font-size:36px;">💳</div>
+          <div>
+            <div style="font-size:18px;font-weight:900;">Stripe</div>
+            <div style="font-size:11px;color:var(--muted);">グローバル決済プラットフォーム</div>
+          </div>
+        </div>
+        <ul style="list-style:none;padding:0;font-size:13px;color:var(--text-soft);line-height:2;">
+          <li>✓ 海外決済もOK</li>
+          <li>✓ 機能豊富（サブスク・分割等）</li>
+          <li>✓ 開発者向けドキュメント充実</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:18px;padding:28px;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+          <div style="font-size:36px;">🇯🇵</div>
+          <div>
+            <div style="font-size:18px;font-weight:900;">Univapay</div>
+            <div style="font-size:11px;color:var(--muted);">日本の決済プロセッサ</div>
+          </div>
+        </div>
+        <ul style="list-style:none;padding:0;font-size:13px;color:var(--text-soft);line-height:2;">
+          <li>✓ <span class="hl-solve">日本企業で安心</span></li>
+          <li>✓ 日本語サポート充実</li>
+          <li>✓ 国内決済の運用安定</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:24px;font-size:13px;color:var(--text-soft);">
+      💡 既にStripeを使ってる方も、これからUnivapayに移行したい方も、どちらも対応します。
+    </p>
   </div>
 </section>
 
@@ -697,26 +757,33 @@
       初期セットアップが終わったら、もう触る必要はありません。<br>
       Stripeで決済が発生するたび、Re:Me OPSが裏側で全部やります。
     </p>
-    <div class="how-steps">
+    <div class="how-steps" style="grid-template-columns:repeat(4,1fr);">
       <div class="how-step">
         <div class="how-step-num">1</div>
-        <div class="how-step-icon">💳</div>
-        <div class="how-step-title">Stripeで決済発生</div>
-        <div class="how-step-body">受講者の決済が完了すると、その情報が瞬時にRe:Me OPSに届きます。署名検証で安全性を担保。</div>
+        <div class="how-step-icon">📝</div>
+        <div class="how-step-title">契約書を発行</div>
+        <div class="how-step-body">案件発生時、GMOサイン等で契約書を自動発行。電子締結まで一気通貫。</div>
       </div>
       <div class="how-step">
         <div class="how-step-num">2</div>
+        <div class="how-step-icon">💳</div>
+        <div class="how-step-title">決済発生</div>
+        <div class="how-step-body">Stripe または Univapayで決済完了→瞬時にRe:Me OPSに通知。署名検証で安全性を担保。</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
         <div class="how-step-icon">🤖</div>
         <div class="how-step-title">自動振り分け＆計算</div>
         <div class="how-step-body">商品ごとの勘定科目に振り分け、紹介者がいればJV紹介料を自動計算。すべてあなたが寝てる間に。</div>
       </div>
       <div class="how-step">
-        <div class="how-step-num">3</div>
+        <div class="how-step-num">4</div>
         <div class="how-step-icon">📒</div>
         <div class="how-step-title">freeeに自動記帳</div>
         <div class="how-step-body">freeeに取引として登録。月次の試算表や決算にもそのまま反映。あなたは管理画面で確認するだけ。</div>
       </div>
     </div>
+    <style>@media(max-width:900px){.how-steps{grid-template-columns:repeat(2,1fr) !important;}}@media(max-width:560px){.how-steps{grid-template-columns:1fr !important;}}</style>
   </div>
 </section>
 
@@ -811,6 +878,12 @@
     <div class="block-label">FEATURES</div>
     <h2 class="block-title">なぜRe:Me OPSが選ばれるのか</h2>
     <div class="features-grid">
+      <div class="feature-card">
+        <svg class="bg" viewBox="0 0 120 120"><rect x="30" y="20" width="60" height="80" rx="6" fill="url(#fg0)"/><line x1="40" y1="40" x2="80" y2="40" stroke="#fff" stroke-width="3"/><line x1="40" y1="55" x2="80" y2="55" stroke="#fff" stroke-width="3"/><line x1="40" y1="70" x2="65" y2="70" stroke="#fff" stroke-width="3"/><defs><linearGradient id="fg0"><stop stop-color="#fb7185"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs></svg>
+        <div class="icon-circle">📝</div>
+        <div class="head">契約書締結まで自動化</div>
+        <div class="body">案件発生でGMOサイン等から契約書を自動発行・電子締結。「契約書を作る→送る→返してもらう」の手作業を撤廃。決済→記帳までを一気通貫で繋ぎます。</div>
+      </div>
       <div class="feature-card">
         <svg class="bg" viewBox="0 0 120 120"><polygon points="60,15 70,40 95,40 75,55 85,85 60,70 35,85 45,55 25,40 50,40" fill="url(#fg1)"/><defs><linearGradient id="fg1"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs></svg>
         <div class="icon-circle">⚡</div>
@@ -994,7 +1067,8 @@
       <div class="price-incl">
         <strong>含まれているもの</strong>
         <ul>
-          <li>Stripe決済の自動取り込み</li>
+          <li>契約書の自動発行・電子締結（GMOサイン等）</li>
+          <li>Stripe / Univapay 決済の自動取り込み</li>
           <li>勘定科目の自動振り分け</li>
           <li>JV紹介料の自動計算</li>
           <li>freee自動記帳</li>
@@ -1057,6 +1131,16 @@
     <h2 class="block-title">よくある質問</h2>
 
     <details class="faq-item">
+      <summary>Stripeのアカウント凍結リスクが心配です。Univapayでも使えますか？</summary>
+      <div class="answer">はい、Univapayにも対応しています。日本企業の決済プロセッサのほうが安心という声を多くいただき、Univapay対応を実装しました。既にStripeをお使いの方はそのまま、これから契約される方はUnivapayを選んでもOKです。後から切り替えることも可能です。</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>契約書の電子締結（GMOサイン等）にも対応していますか？</summary>
+      <div class="answer">はい、契約書発行から電子締結までの自動化もご支援します。GMOサイン、freeeサイン、クラウドサイン等に対応。案件発生→契約書自動発行→締結→決済→記帳までを一気通貫で繋ぎます。</div>
+    </details>
+
+    <details class="faq-item">
       <summary>売上規模が小さい/大きい場合でも対応できますか？</summary>
       <div class="answer">本サービスは月の決済件数が「数十〜数百件」程度のスクール・講座事業者向けに最適化しています。月数千件を超えるEC事業者様などは個別ご相談ください。</div>
     </details>
@@ -1064,11 +1148,6 @@
     <details class="faq-item">
       <summary>freee以外の会計ソフト（マネーフォワード等）にも対応していますか？</summary>
       <div class="answer">現状はfreeeのみ対応しています。マネーフォワード等の他クラウド会計への対応は、お客様のリクエスト次第で個別対応も可能です。お問い合わせください。</div>
-    </details>
-
-    <details class="faq-item">
-      <summary>Stripe以外の決済（Univapay、Square等）にも対応していますか？</summary>
-      <div class="answer">現状はStripeのみ対応しています。他の決済プロセッサ（Univapay、Square、PAY.JP等）にもご要望に応じて個別対応可能です。</div>
     </details>
 
     <details class="faq-item">
