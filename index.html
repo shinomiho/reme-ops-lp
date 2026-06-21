@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Re:Me OPS — Stripe決済を、毎月勝手にfreeeに記録する</title>
-  <meta name="description" content="毎月の仕訳作業をゼロに。Stripe決済を自動でfreeeに記帳、JV紹介料も自動計算。経営者の時間を経理から解放する完全マネージドサービス。初月¥300,000、月額¥150,000。">
-  <meta property="og:title" content="Re:Me OPS — Stripe決済を、毎月勝手にfreeeに記録する">
-  <meta property="og:description" content="毎月の仕訳作業をゼロに。Stripe決済を自動でfreeeに記帳、JV紹介料も自動計算。">
+  <title>Re:Me OPS — オンラインスクール・講座事業の「経理オールインワン」</title>
+  <meta name="description" content="売上1億円規模のスクール・講座販売事業者向け、経理オールインワン自動化サービス。経理派遣の半額で、Stripe決済・JV紹介料・freee仕訳が全自動。月額¥150,000。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Anton&display=swap" rel="stylesheet">
@@ -26,6 +24,7 @@
       --pink: #ff5ad2;
       --amber: #fbbf24;
       --emerald: #10b981;
+      --rose: #fb7185;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -36,11 +35,11 @@
       line-height: 1.9;
       font-size: 16px;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
+    img,svg { max-width: 100%; display: block; }
 
-    /* グラデーション背景 */
     .bg-grad-1 {
       background: radial-gradient(ellipse at top left, rgba(124,110,224,.25), transparent 50%),
                   radial-gradient(ellipse at bottom right, rgba(0,212,255,.18), transparent 50%),
@@ -48,272 +47,178 @@
     }
 
     /* NAV */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(12, 10, 46, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 1100px; margin: 0 auto; padding: 14px 24px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    }
-    .nav-logo {
-      font-weight: 900; font-size: 18px; letter-spacing: 0.5px;
-      background: linear-gradient(135deg, var(--accent-light), var(--cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(12,10,46,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-logo { font-weight: 900; font-size: 18px; letter-spacing: 0.5px; background: linear-gradient(135deg, var(--accent-light), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .nav-links { display: flex; gap: 18px; align-items: center; }
     .nav-links a { font-size: 13px; color: var(--text-soft); font-weight: 500; }
     .nav-links a:hover { color: white; }
-    .nav-cta {
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      color: white; padding: 8px 18px; border-radius: 20px;
-      font-weight: 700; font-size: 13px;
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-    }
+    .nav-cta { background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: white; padding: 8px 18px; border-radius: 20px; font-weight: 700; font-size: 13px; }
+    @media (max-width: 768px) { .nav-links { display: none; } }
 
     /* HERO */
-    .hero { padding: 80px 24px 60px; text-align: center; }
-    .hero-inner { max-width: 800px; margin: 0 auto; }
-    .hero-badge {
-      display: inline-block; padding: 6px 14px; border-radius: 20px;
-      background: rgba(255,255,255,.08); border: 1px solid var(--border);
-      font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-light);
-      margin-bottom: 24px;
-    }
-    .hero h1 {
-      font-size: 44px; font-weight: 900; line-height: 1.3; margin-bottom: 20px;
-      letter-spacing: -0.02em;
-    }
-    .hero h1 .accent {
-      background: linear-gradient(135deg, var(--accent-light), var(--cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero .sub {
-      font-size: 17px; color: var(--text-soft); margin-bottom: 36px; line-height: 1.9;
-    }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      color: white; padding: 16px 36px; border-radius: 40px;
-      font-weight: 800; font-size: 16px;
-      box-shadow: 0 10px 40px rgba(124,110,224,.4);
-    }
-    .hero-cta-sub {
-      display: inline-block; margin-left: 14px;
-      font-size: 13px; color: var(--muted);
-    }
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 30px; }
-      .hero { padding: 60px 20px 40px; }
-    }
+    .hero { padding: 60px 24px 100px; position: relative; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+    @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; gap: 24px; } }
+    .hero-badge { display: inline-block; padding: 6px 14px; border-radius: 20px; background: rgba(255,255,255,.08); border: 1px solid var(--border); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-light); margin-bottom: 18px; }
+    .hero h1 { font-size: 42px; font-weight: 900; line-height: 1.3; margin-bottom: 18px; letter-spacing: -0.02em; }
+    .hero h1 .accent { background: linear-gradient(135deg, var(--accent-light), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero .sub { font-size: 16px; color: var(--text-soft); margin-bottom: 28px; line-height: 1.9; }
+    .hero-stats { display: flex; gap: 18px; margin-bottom: 32px; flex-wrap: wrap; }
+    .hero-stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 10px 16px; }
+    .hero-stat .n { font-family: 'Anton', sans-serif; font-size: 22px; background: linear-gradient(135deg, var(--accent-light), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+    .hero-stat .l { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: white; padding: 16px 32px; border-radius: 40px; font-weight: 800; font-size: 15px; box-shadow: 0 10px 40px rgba(124,110,224,.4); }
+    .hero-cta-sub { display: inline-block; margin-left: 14px; font-size: 12px; color: var(--muted); }
+    @media (max-width: 768px) { .hero h1 { font-size: 28px; } .hero { padding: 40px 20px 60px; } }
+
+    /* HERO ILLUSTRATION */
+    .hero-illust { position: relative; height: 360px; }
+    .hero-illust-blob { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(124,110,224,.4), transparent 70%); filter: blur(40px); }
+    .hero-illust-card { position: absolute; background: var(--bg-card-2); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 16px; padding: 14px 18px; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+    .hero-illust-card.stripe { top: 20px; left: 30px; }
+    .hero-illust-card.engine { top: 130px; left: 50%; transform: translateX(-50%); }
+    .hero-illust-card.freee { top: 240px; right: 30px; }
+    .arrow-down { position: absolute; left: 50%; transform: translateX(-50%); font-size: 24px; color: var(--accent-light); }
+    .arrow-down.a1 { top: 100px; }
+    .arrow-down.a2 { top: 210px; }
+    .hero-illust-card .lbl { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 2px; margin-bottom: 4px; }
+    .hero-illust-card .v { font-size: 14px; font-weight: 800; }
+    .hero-illust-card .em { font-size: 24px; margin-bottom: 6px; }
 
     /* セクション共通 */
-    section.block { padding: 80px 24px; }
+    section.block { padding: 80px 24px; position: relative; }
     .block-inner { max-width: 1000px; margin: 0 auto; }
-    .block-label {
-      display: inline-block; font-size: 11px; font-weight: 900;
-      letter-spacing: 3px; color: var(--accent-light); margin-bottom: 10px;
-    }
-    .block-title {
-      font-size: 32px; font-weight: 900; margin-bottom: 18px; line-height: 1.4;
-    }
+    .block-label { display: inline-block; font-size: 11px; font-weight: 900; letter-spacing: 3px; color: var(--accent-light); margin-bottom: 10px; }
+    .block-title { font-size: 30px; font-weight: 900; margin-bottom: 18px; line-height: 1.4; }
     .block-sub { font-size: 15px; color: var(--text-soft); margin-bottom: 40px; line-height: 1.9; }
-    @media (max-width: 768px) {
-      section.block { padding: 60px 20px; }
-      .block-title { font-size: 24px; }
-    }
+    @media (max-width: 768px) { section.block { padding: 60px 20px; } .block-title { font-size: 22px; } }
 
-    /* PAIN POINTS */
-    .pain { background: var(--bg-mid); }
-    .pain-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px; margin-top: 24px;
-    }
-    .pain-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 24px;
-    }
-    .pain-card .icon { font-size: 32px; margin-bottom: 12px; }
+    /* TARGET (こんな方に) */
+    .target { background: var(--bg-mid); }
+    .target-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 24px; }
+    .target-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; position: relative; overflow: hidden; }
+    .target-card svg { margin-bottom: 14px; }
+    .target-card h3 { font-size: 16px; font-weight: 900; margin-bottom: 8px; }
+    .target-card p { font-size: 13px; color: var(--text-soft); line-height: 1.85; }
+    .target-check { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-top: 18px; padding: 10px 14px; background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3); border-radius: 10px; color: var(--emerald); font-weight: 700; }
+
+    /* PAIN */
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 24px; }
+    .pain-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; position: relative; }
+    .pain-card svg.bg { position: absolute; right: -10px; bottom: -10px; opacity: 0.06; width: 100px; height: 100px; }
+    .pain-card .icon { font-size: 28px; margin-bottom: 10px; }
     .pain-card .head { font-size: 16px; font-weight: 800; margin-bottom: 8px; color: white; }
     .pain-card .body { font-size: 14px; color: var(--text-soft); line-height: 1.85; }
 
+    /* ALL-IN-ONE */
+    .aio { background: var(--bg-mid); }
+    .aio-hub { max-width: 720px; margin: 30px auto 0; position: relative; }
+    .aio-circle { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-light)); margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(124,110,224,.4); }
+    .aio-circle .em { font-size: 36px; }
+    .aio-circle .name { font-size: 13px; font-weight: 900; margin-top: 4px; }
+    .aio-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 32px; }
+    .aio-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; text-align: center; }
+    .aio-item .em { font-size: 28px; margin-bottom: 8px; }
+    .aio-item .name { font-size: 13px; font-weight: 800; margin-bottom: 4px; }
+    .aio-item .sub { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
     /* 仕組み */
-    .how-steps {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
-      margin-top: 24px;
-    }
-    @media (max-width: 768px) {
-      .how-steps { grid-template-columns: 1fr; }
-    }
-    .how-step {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 28px; position: relative;
-    }
-    .how-step-num {
-      position: absolute; top: -14px; left: 24px;
-      width: 32px; height: 32px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--cyan));
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 14px;
-    }
+    .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; position: relative; }
+    @media (max-width: 768px) { .how-steps { grid-template-columns: 1fr; } }
+    .how-step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; position: relative; }
+    .how-step-num { position: absolute; top: -14px; left: 24px; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; }
     .how-step-icon { font-size: 36px; margin: 14px 0 12px; }
     .how-step-title { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
     .how-step-body { font-size: 13px; color: var(--text-soft); line-height: 1.85; }
 
-    /* 競合比較 */
+    /* COMPARE */
     .compare { background: var(--bg-mid); }
-    .compare-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 18px; margin-top: 30px;
-    }
-    @media (max-width: 768px) {
-      .compare-grid { grid-template-columns: 1fr; }
-    }
-    .compare-col {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 18px; padding: 28px;
-    }
-    .compare-col.winner {
-      background: linear-gradient(135deg, rgba(124,110,224,.18), rgba(0,212,255,.10));
-      border-color: var(--accent-light);
-      box-shadow: 0 20px 60px rgba(124,110,224,.2);
-    }
-    .compare-col-label {
-      font-size: 10px; font-weight: 900; letter-spacing: 2px;
-      padding: 4px 10px; border-radius: 12px;
-      background: rgba(255,255,255,.08); color: var(--muted);
-      display: inline-block; margin-bottom: 14px;
-    }
-    .compare-col.winner .compare-col-label {
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      color: white;
-    }
-    .compare-col h3 { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
-    .compare-col .price { font-size: 13px; color: var(--text-soft); margin-bottom: 18px; }
+
+    /* コスト比較バー */
+    .cost-bar-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-top: 24px; }
+    .cost-bar-title { font-size: 14px; font-weight: 800; margin-bottom: 18px; color: var(--text-soft); text-align: center; }
+    .cost-bar-row { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: center; margin-bottom: 16px; }
+    @media (max-width: 768px) { .cost-bar-row { grid-template-columns: 1fr; gap: 4px; } }
+    .cost-bar-label { font-size: 13px; font-weight: 700; }
+    .cost-bar-label .sub { font-size: 11px; color: var(--muted); display: block; font-weight: 400; margin-top: 2px; }
+    .cost-bar { position: relative; height: 40px; background: rgba(255,255,255,.04); border-radius: 6px; overflow: hidden; }
+    .cost-bar .fill { height: 100%; display: flex; align-items: center; justify-content: flex-end; padding-right: 14px; font-weight: 900; font-size: 14px; color: white; }
+    .cost-bar.staff .fill { width: 100%; background: linear-gradient(90deg, rgba(251,113,133,.4), rgba(251,113,133,.9)); }
+    .cost-bar.dispatch .fill { width: 80%; background: linear-gradient(90deg, rgba(251,191,36,.4), rgba(251,191,36,.9)); }
+    .cost-bar.ours .fill { width: 50%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+    .savings { background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(0,212,255,.10)); border: 1px solid rgba(16,185,129,.4); border-radius: 12px; padding: 16px; margin-top: 20px; text-align: center; font-weight: 700; }
+    .savings .big { font-family: 'Anton', sans-serif; font-size: 32px; color: var(--emerald); display: block; line-height: 1; margin: 4px 0; }
+
+    .compare-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+    @media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-col { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 26px; }
+    .compare-col.winner { background: linear-gradient(135deg, rgba(124,110,224,.18), rgba(0,212,255,.10)); border-color: var(--accent-light); box-shadow: 0 20px 60px rgba(124,110,224,.2); position: relative; }
+    .compare-col.winner::before { content: 'BEST'; position: absolute; top: -10px; right: 20px; background: linear-gradient(135deg, var(--accent), var(--accent-light)); padding: 4px 12px; border-radius: 12px; font-size: 10px; font-weight: 900; letter-spacing: 2px; }
+    .compare-col-label { font-size: 10px; font-weight: 900; letter-spacing: 2px; padding: 4px 10px; border-radius: 12px; background: rgba(255,255,255,.08); color: var(--muted); display: inline-block; margin-bottom: 12px; }
+    .compare-col.winner .compare-col-label { background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: white; }
+    .compare-col h3 { font-size: 17px; font-weight: 900; margin-bottom: 6px; }
+    .compare-col .price { font-size: 13px; color: var(--text-soft); margin-bottom: 16px; font-weight: 700; }
     .compare-col ul { list-style: none; }
-    .compare-col li {
-      font-size: 13px; padding: 8px 0; line-height: 1.6;
-      border-bottom: 1px solid rgba(255,255,255,.05);
-      display: flex; gap: 8px; align-items: flex-start;
-    }
+    .compare-col li { font-size: 13px; padding: 7px 0; line-height: 1.6; border-bottom: 1px solid rgba(255,255,255,.05); display: flex; gap: 8px; align-items: flex-start; }
     .compare-col li:last-child { border-bottom: none; }
     .compare-col li .ck { flex-shrink: 0; width: 16px; }
     .ck.ok { color: var(--emerald); }
     .ck.warn { color: var(--amber); }
     .ck.no { color: rgba(255,255,255,.3); }
 
-    /* 特徴 */
-    .features-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px; margin-top: 24px;
-    }
-    .feature-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 28px;
-    }
-    .feature-card .icon { font-size: 30px; margin-bottom: 14px; }
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 24px; }
+    .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; position: relative; overflow: hidden; }
+    .feature-card svg.bg { position: absolute; right: -20px; bottom: -20px; opacity: 0.08; width: 140px; height: 140px; }
+    .feature-card .icon-circle { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(124,110,224,.3), rgba(0,212,255,.15)); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
     .feature-card .head { font-size: 16px; font-weight: 800; margin-bottom: 10px; }
     .feature-card .body { font-size: 13px; color: var(--text-soft); line-height: 1.85; }
 
-    /* 料金 */
+    /* PRICING */
     .pricing { background: var(--bg-mid); }
-    .price-card {
-      max-width: 560px; margin: 30px auto 0;
-      background: linear-gradient(135deg, rgba(124,110,224,.15), rgba(0,212,255,.08));
-      border: 2px solid var(--accent-light);
-      border-radius: 20px; padding: 36px;
-      box-shadow: 0 20px 60px rgba(124,110,224,.25);
-    }
-    .price-card .plan {
-      font-size: 11px; font-weight: 900; letter-spacing: 3px;
-      color: var(--accent-light); margin-bottom: 8px;
-    }
+    .price-card { max-width: 580px; margin: 30px auto 0; background: linear-gradient(135deg, rgba(124,110,224,.15), rgba(0,212,255,.08)); border: 2px solid var(--accent-light); border-radius: 20px; padding: 36px; box-shadow: 0 20px 60px rgba(124,110,224,.25); }
+    .price-card .plan { font-size: 11px; font-weight: 900; letter-spacing: 3px; color: var(--accent-light); margin-bottom: 8px; }
     .price-card h3 { font-size: 22px; font-weight: 900; margin-bottom: 20px; }
     .price-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
     .price-row:last-of-type { border-bottom: none; }
     .price-row .label { font-size: 14px; color: var(--text-soft); }
-    .price-row .amount {
-      font-size: 24px; font-weight: 900;
-      background: linear-gradient(135deg, var(--accent-light), var(--cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
+    .price-row .amount { font-size: 24px; font-weight: 900; background: linear-gradient(135deg, var(--accent-light), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .price-row .amount .unit { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px; -webkit-text-fill-color: var(--muted); }
-    .price-incl {
-      margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
-      font-size: 13px; color: var(--text-soft); line-height: 1.9;
-    }
-    .price-incl strong { color: white; }
+    .price-incl { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-soft); line-height: 1.9; }
+    .price-incl strong { color: white; display:block; margin-bottom: 8px; }
+    .price-incl ul { list-style: none; padding-left: 0; }
+    .price-incl li { padding: 4px 0; display: flex; gap: 8px; align-items: flex-start; }
+    .price-incl li::before { content: '✓'; color: var(--emerald); font-weight: 900; flex-shrink: 0; }
 
-    /* お申し込みの流れ */
-    .flow-steps {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px; margin-top: 24px;
-    }
-    .flow-step {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 20px; text-align: center;
-    }
-    .flow-step .n {
-      font-family: 'Anton', sans-serif; font-size: 28px;
-      background: linear-gradient(135deg, var(--accent-light), var(--cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 6px; line-height: 1;
-    }
+    /* FLOW */
+    .flow-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 24px; }
+    .flow-step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .flow-step .n { font-family: 'Anton', sans-serif; font-size: 28px; background: linear-gradient(135deg, var(--accent-light), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; line-height: 1; }
+    .flow-step .em { font-size: 24px; margin-bottom: 4px; }
     .flow-step .ttl { font-size: 13px; font-weight: 800; margin-bottom: 6px; }
     .flow-step .sub { font-size: 11px; color: var(--muted); line-height: 1.7; }
 
     /* FAQ */
     .faq { background: var(--bg-mid); }
-    .faq-item {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 18px 22px; margin-bottom: 10px;
-    }
-    .faq-item summary {
-      cursor: pointer; font-weight: 700; font-size: 14px;
-      display: flex; gap: 10px; align-items: flex-start;
-    }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 22px; margin-bottom: 10px; }
+    .faq-item summary { cursor: pointer; font-weight: 700; font-size: 14px; display: flex; gap: 10px; align-items: flex-start; }
     .faq-item summary::before { content: 'Q.'; color: var(--accent-light); flex-shrink: 0; font-weight: 900; }
     .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item .answer {
-      margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);
-      font-size: 13px; color: var(--text-soft); line-height: 1.9;
-      display: flex; gap: 10px;
-    }
+    .faq-item .answer { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-soft); line-height: 1.9; display: flex; gap: 10px; }
     .faq-item .answer::before { content: 'A.'; color: var(--cyan); flex-shrink: 0; font-weight: 900; }
 
     /* FINAL CTA */
-    .final-cta {
-      background: linear-gradient(135deg, rgba(124,110,224,.2), rgba(0,212,255,.12));
-      text-align: center;
-    }
-    .final-cta h2 {
-      font-size: 30px; font-weight: 900; line-height: 1.5; margin-bottom: 16px;
-    }
+    .final-cta { background: linear-gradient(135deg, rgba(124,110,224,.2), rgba(0,212,255,.12)); text-align: center; }
+    .final-cta h2 { font-size: 30px; font-weight: 900; line-height: 1.5; margin-bottom: 16px; }
     .final-cta p { color: var(--text-soft); margin-bottom: 28px; font-size: 15px; }
     .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      color: white; padding: 14px 30px; border-radius: 32px;
-      font-weight: 800; font-size: 14px;
-      box-shadow: 0 10px 40px rgba(124,110,224,.4);
-    }
-    .btn-secondary {
-      background: rgba(255,255,255,.08);
-      color: white; padding: 14px 30px; border-radius: 32px;
-      font-weight: 700; font-size: 14px;
-      border: 1px solid var(--border);
-    }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: white; padding: 14px 30px; border-radius: 32px; font-weight: 800; font-size: 14px; box-shadow: 0 10px 40px rgba(124,110,224,.4); }
+    .btn-secondary { background: rgba(255,255,255,.08); color: white; padding: 14px 30px; border-radius: 32px; font-weight: 700; font-size: 14px; border: 1px solid var(--border); }
     .btn-secondary:hover { background: rgba(255,255,255,.14); }
 
     /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border); padding: 32px 24px; text-align: center;
-      font-size: 12px; color: var(--muted);
-    }
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 12px; color: var(--muted); }
     footer a { color: var(--text-soft); margin: 0 8px; }
     footer a:hover { color: white; }
   </style>
@@ -325,8 +230,9 @@
   <div class="nav-inner">
     <div class="nav-logo">💳 Re:Me OPS</div>
     <div class="nav-links">
-      <a href="#how">仕組み</a>
-      <a href="#compare">比較</a>
+      <a href="#target">対象</a>
+      <a href="#aio">機能</a>
+      <a href="#compare">料金比較</a>
       <a href="#pricing">料金</a>
       <a href="#faq">FAQ</a>
       <a href="#cta" class="nav-cta">無料相談</a>
@@ -337,135 +243,313 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">STRIPE × FREEE 自動仕訳</div>
-    <h1>
-      経理に毎月、<br>
-      <span class="accent">何時間使ってますか？</span>
-    </h1>
-    <p class="sub">
-      Re:Me OPS は、Stripeの決済情報を毎月自動でfreeeに記帳する完全マネージドサービス。<br>
-      JV紹介料の計算、エラー時の自動再試行、それも全部、あなたが何もしなくても勝手に動きます。
+    <div>
+      <div class="hero-badge">経理オールインワン・自動化サービス</div>
+      <h1>
+        オンラインスクールの<span class="accent">経理は、もう自分でやらない。</span>
+      </h1>
+      <p class="sub">
+        Stripe決済の仕訳、JV紹介料の計算、月次の経理処理まで。<br>
+        <strong style="color:#fff;">経理派遣の半分以下のコスト</strong>で、全部自動化します。<br>
+        売上1億円規模のスクール・講座販売事業者のために設計。
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="n">¥150,000</div>
+          <div class="l">月額（派遣の約半額）</div>
+        </div>
+        <div class="hero-stat">
+          <div class="n">10時間</div>
+          <div class="l">月の経理時間削減</div>
+        </div>
+        <div class="hero-stat">
+          <div class="n">24h365日</div>
+          <div class="l">休まず稼働</div>
+        </div>
+      </div>
+      <a href="#cta" class="hero-cta">無料相談する →</a>
+      <span class="hero-cta-sub">30分・押し売りなし</span>
+    </div>
+
+    <!-- HERO ILLUSTRATION: フロー図 -->
+    <div class="hero-illust">
+      <div class="hero-illust-blob"></div>
+
+      <div class="hero-illust-card stripe">
+        <div class="lbl">PAYMENT</div>
+        <div class="em">💳</div>
+        <div class="v">Stripe決済</div>
+      </div>
+
+      <div class="arrow-down a1">↓</div>
+
+      <div class="hero-illust-card engine">
+        <div class="lbl">AUTOMATION</div>
+        <div class="em">🤖</div>
+        <div class="v">Re:Me OPS</div>
+      </div>
+
+      <div class="arrow-down a2">↓</div>
+
+      <div class="hero-illust-card freee">
+        <div class="lbl">ACCOUNTING</div>
+        <div class="em">📒</div>
+        <div class="v">freee自動記帳</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET: こんな方に -->
+<section class="block target" id="target">
+  <div class="block-inner">
+    <div class="block-label">FOR YOU</div>
+    <h2 class="block-title">こんな経営者のために、つくりました。</h2>
+    <p class="block-sub">
+      売上は順調なのに、経理に取られる時間は減らない。<br>
+      経理スタッフを雇うほどではないけど、自分でやるには限界がある。そんな方に。
     </p>
-    <a href="#cta" class="hero-cta">無料相談する →</a>
-    <div class="hero-cta-sub">所要時間 15分・押し売りなし</div>
+
+    <div class="target-grid">
+      <!-- スクール経営者 -->
+      <div class="target-card">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <circle cx="28" cy="28" r="26" fill="url(#g1)" stroke="rgba(255,255,255,.2)"/>
+          <path d="M16 22 L28 16 L40 22 L28 28 Z" fill="#fff"/>
+          <path d="M20 28 V36 C20 39 24 40 28 40 C32 40 36 39 36 36 V28" stroke="#fff" stroke-width="2" fill="none"/>
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c6ee0"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs>
+        </svg>
+        <h3>オンラインスクールの経営者</h3>
+        <p>受講料Stripe決済を月に数十〜数百件処理。月末に振り分け、勘定科目、紹介料計算…毎月10時間以上を経理に奪われている。</p>
+        <div class="target-check">✓ Re:Me OPS の典型ユーザー</div>
+      </div>
+
+      <!-- 講座販売 -->
+      <div class="target-card">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <circle cx="28" cy="28" r="26" fill="url(#g2)" stroke="rgba(255,255,255,.2)"/>
+          <rect x="16" y="18" width="24" height="22" rx="2" fill="#fff"/>
+          <line x1="20" y1="24" x2="36" y2="24" stroke="#7c6ee0" stroke-width="2"/>
+          <line x1="20" y1="28" x2="36" y2="28" stroke="#7c6ee0" stroke-width="2"/>
+          <line x1="20" y1="32" x2="30" y2="32" stroke="#7c6ee0" stroke-width="2"/>
+          <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c6ee0"/><stop offset="1" stop-color="#ff5ad2"/></linearGradient></defs>
+        </svg>
+        <h3>講座・コンテンツ販売事業者</h3>
+        <p>note・カナリー・自社サイトでデジタル教材を販売。紹介パートナーがいる場合、毎月のJV紹介料計算が大変。</p>
+        <div class="target-check">✓ JV計算もまとめて自動化</div>
+      </div>
+
+      <!-- 売上1億円規模 -->
+      <div class="target-card">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <circle cx="28" cy="28" r="26" fill="url(#g3)" stroke="rgba(255,255,255,.2)"/>
+          <path d="M18 38 L18 30 L24 30 L24 38 Z M28 38 L28 24 L34 24 L34 38 Z M38 38 L38 18 L44 18 L44 38 Z M14 38 L46 38" stroke="#fff" stroke-width="2" fill="#fff" fill-opacity="0.7" stroke-linejoin="round"/>
+          <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00d4ff"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs>
+        </svg>
+        <h3>売上数千万〜1億円規模</h3>
+        <p>専属の経理スタッフを雇うほどではない、でも毎月の処理量は増えていく。経理派遣だと月25-30万円かかってしまう規模感。</p>
+        <div class="target-check">✓ 経理を雇わずスケール可能</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- PAIN -->
-<section class="block pain">
+<section class="block">
   <div class="block-inner">
-    <div class="block-label">SUCH AS</div>
-    <h2 class="block-title">
-      経営者が経理に取られる時間、本当はもっと減らせます
-    </h2>
-    <p class="block-sub">
-      毎月末の請求書発行、入金確認、勘定科目の振り分け…<br>
-      売上が増えるほど、経理に取られる時間も増えていきます。
-    </p>
+    <div class="block-label">PAIN</div>
+    <h2 class="block-title">こんな悩み、ありませんか？</h2>
     <div class="pain-grid">
       <div class="pain-card">
+        <svg class="bg" viewBox="0 0 100 100"><path d="M50 10 L90 30 V70 L50 90 L10 70 V30 Z" fill="#fff" stroke="#fff" stroke-width="2"/></svg>
         <div class="icon">⏱</div>
-        <div class="head">仕訳作業に毎月10時間</div>
-        <div class="body">Stripeの管理画面とfreeeを行ったり来たり。顧客が増えるたびに記帳の負担も増えていく。経営者がやることじゃないのに、頼める人もいない。</div>
+        <div class="head">月10時間以上、経理に時間が消える</div>
+        <div class="body">毎月末、Stripe管理画面とfreeeを行ったり来たり。仕訳作業、勘定科目の振り分け、JV紹介料の計算…経営者がやることじゃないのに、頼める人もいない。</div>
       </div>
       <div class="pain-card">
+        <svg class="bg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="none" stroke="#fff" stroke-width="3"/><line x1="50" y1="50" x2="80" y2="50" stroke="#fff" stroke-width="3"/><line x1="50" y1="50" x2="50" y2="25" stroke="#fff" stroke-width="3"/></svg>
         <div class="icon">💸</div>
-        <div class="head">経理スタッフを雇うと月30万〜</div>
-        <div class="body">経理経験者を採用するとフルタイムで月30万円〜。仕訳作業だけなら過剰なスペックでも、それしか選択肢がない。</div>
+        <div class="head">経理派遣を雇うと月25-30万円</div>
+        <div class="body">経理派遣の時給は2,500〜3,500円。週20時間でも月20-30万円。仕訳作業だけにそこまでかけるのは、正直高いと感じる。</div>
       </div>
       <div class="pain-card">
+        <svg class="bg" viewBox="0 0 100 100"><polygon points="50,15 90,80 10,80" fill="none" stroke="#fff" stroke-width="3"/><line x1="50" y1="35" x2="50" y2="60" stroke="#fff" stroke-width="3"/><circle cx="50" cy="70" r="2" fill="#fff"/></svg>
         <div class="icon">⚠️</div>
         <div class="head">入力ミス・記帳漏れが怖い</div>
         <div class="body">急いで仕訳すると勘定科目を間違えたり、入金を見落としたり。決算前に税理士から「これ何ですか？」と質問が来る恐怖。</div>
       </div>
       <div class="pain-card">
+        <svg class="bg" viewBox="0 0 100 100"><circle cx="35" cy="35" r="18" fill="none" stroke="#fff" stroke-width="3"/><circle cx="65" cy="65" r="18" fill="none" stroke="#fff" stroke-width="3"/><line x1="50" y1="50" x2="50" y2="50" stroke="#fff" stroke-width="3"/></svg>
         <div class="icon">🤝</div>
-        <div class="head">JV紹介料の計算が面倒</div>
-        <div class="body">紹介パートナーがいる場合、毎月「誰にいくら払うか」をExcelで計算。間違えるとパートナーとの信頼関係に影響する。</div>
+        <div class="head">JV紹介料の計算が地獄</div>
+        <div class="body">紹介パートナーごとに料率も違う。月末に「誰にいくら払うか」をExcelで計算するの、もう疲れた。間違えるとパートナーとの信頼にも影響する。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL-IN-ONE -->
+<section class="block aio" id="aio">
+  <div class="block-inner">
+    <div class="block-label">ALL-IN-ONE</div>
+    <h2 class="block-title">経理の「機械でできること」、全部入り。</h2>
+    <p class="block-sub">
+      Stripe決済の取り込みから、勘定科目の振り分け、JV紹介料の計算、freee記帳まで。<br>
+      バラバラだった作業を1つのシステムで全部自動化します。
+    </p>
+
+    <div class="aio-hub">
+      <div class="aio-circle">
+        <div class="em">💳</div>
+        <div class="name">Re:Me OPS</div>
+      </div>
+
+      <div class="aio-items">
+        <div class="aio-item">
+          <div class="em">📥</div>
+          <div class="name">Stripe決済取り込み</div>
+          <div class="sub">webhook自動受信<br>署名検証付き</div>
+        </div>
+        <div class="aio-item">
+          <div class="em">🏷️</div>
+          <div class="name">勘定科目振り分け</div>
+          <div class="sub">事前ルール設定<br>商品別に自動分岐</div>
+        </div>
+        <div class="aio-item">
+          <div class="em">🤝</div>
+          <div class="name">JV紹介料計算</div>
+          <div class="sub">パートナー別料率<br>毎月自動計算</div>
+        </div>
+        <div class="aio-item">
+          <div class="em">📒</div>
+          <div class="name">freee自動記帳</div>
+          <div class="sub">取引として記録<br>月次自動反映</div>
+        </div>
+        <div class="aio-item">
+          <div class="em">🔄</div>
+          <div class="name">エラー自動再試行</div>
+          <div class="sub">freee障害でも<br>1時間以内に復旧</div>
+        </div>
+        <div class="aio-item">
+          <div class="em">📊</div>
+          <div class="name">専用管理画面</div>
+          <div class="sub">決済・記帳・JVを<br>リアルタイム確認</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- 仕組み -->
-<section class="block" id="how">
+<section class="block">
   <div class="block-inner">
-    <div class="block-label">HOW IT WORKS</div>
-    <h2 class="block-title">セットアップは1回、あとは全自動。</h2>
+    <div class="block-label">HOW</div>
+    <h2 class="block-title">セットアップ1回。あとは何もしなくていい。</h2>
     <p class="block-sub">
       初期セットアップが終わったら、もう触る必要はありません。<br>
-      Stripeで決済が発生するたび、Re:Me OPS が裏側で全部やります。
+      Stripeで決済が発生するたび、Re:Me OPSが裏側で全部やります。
     </p>
     <div class="how-steps">
       <div class="how-step">
         <div class="how-step-num">1</div>
         <div class="how-step-icon">💳</div>
         <div class="how-step-title">Stripeで決済発生</div>
-        <div class="how-step-body">クライアント様のStripeで決済が完了すると、その情報が瞬時に Re:Me OPS に通知されます。</div>
+        <div class="how-step-body">受講者の決済が完了すると、その情報が瞬時にRe:Me OPSに届きます。署名検証で安全性を担保。</div>
       </div>
       <div class="how-step">
         <div class="how-step-num">2</div>
         <div class="how-step-icon">🤖</div>
-        <div class="how-step-title">自動仕訳ロジック</div>
-        <div class="how-step-body">事前に設定した勘定科目で freee に取引を作成。JV紹介料があれば自動計算。</div>
+        <div class="how-step-title">自動振り分け＆計算</div>
+        <div class="how-step-body">商品ごとの勘定科目に振り分け、紹介者がいればJV紹介料を自動計算。すべてあなたが寝てる間に。</div>
       </div>
       <div class="how-step">
         <div class="how-step-num">3</div>
         <div class="how-step-icon">📒</div>
         <div class="how-step-title">freeeに自動記帳</div>
-        <div class="how-step-body">freee側で「取引」として記録され、月次の試算表や決算にすぐ反映されます。</div>
+        <div class="how-step-body">freeeに取引として登録。月次の試算表や決算にもそのまま反映。あなたは管理画面で確認するだけ。</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 競合比較 -->
+<!-- COMPARE -->
 <section class="block compare" id="compare">
   <div class="block-inner">
     <div class="block-label">COMPARE</div>
-    <h2 class="block-title">他の選択肢と比べてみると</h2>
-    <p class="block-sub">
-      Stripe決済の記帳をどう運用するか、現実的には3つの選択肢があります。
-    </p>
+    <h2 class="block-title">経理派遣・採用と比べると、これくらい違います</h2>
+
+    <!-- コスト比較バー -->
+    <div class="cost-bar-wrap">
+      <div class="cost-bar-title">💰 月額コスト比較（経理担当の人件費換算）</div>
+
+      <div class="cost-bar-row">
+        <div class="cost-bar-label">
+          経理スタッフを採用
+          <span class="sub">フルタイム・税込</span>
+        </div>
+        <div class="cost-bar staff"><div class="fill">¥300,000+</div></div>
+      </div>
+
+      <div class="cost-bar-row">
+        <div class="cost-bar-label">
+          経理派遣を起用
+          <span class="sub">週20h × 時給3,000円</span>
+        </div>
+        <div class="cost-bar dispatch"><div class="fill">¥240,000</div></div>
+      </div>
+
+      <div class="cost-bar-row">
+        <div class="cost-bar-label">
+          <strong style="color:#a78bfa;">Re:Me OPS</strong>
+          <span class="sub">月額・フルマネージド</span>
+        </div>
+        <div class="cost-bar ours"><div class="fill">¥150,000</div></div>
+      </div>
+
+      <div class="savings">
+        <div>派遣を雇う場合と比べて、年間で</div>
+        <span class="big">¥1,080,000</span>
+        <div>のコスト削減（しかも24時間止まらず動く）</div>
+      </div>
+    </div>
+
+    <!-- 機能比較 -->
     <div class="compare-grid">
-      <!-- A -->
       <div class="compare-col">
-        <div class="compare-col-label">A: 自社採用</div>
+        <div class="compare-col-label">A: 採用</div>
         <h3>経理スタッフを雇う</h3>
-        <div class="price">月 ¥300,000 〜 + 教育コスト</div>
+        <div class="price">月 ¥300,000+ / 教育コスト別</div>
         <ul>
           <li><span class="ck warn">△</span> 柔軟に対応できる</li>
-          <li><span class="ck warn">△</span> 採用に2〜3ヶ月</li>
-          <li><span class="ck no">×</span> 退職リスク</li>
-          <li><span class="ck no">×</span> 仕訳作業には過剰スペック</li>
-          <li><span class="ck no">×</span> 育休・病欠で止まる</li>
+          <li><span class="ck no">×</span> 採用に2〜3ヶ月</li>
+          <li><span class="ck no">×</span> 退職・休職リスク</li>
+          <li><span class="ck no">×</span> 仕訳作業には過剰</li>
+          <li><span class="ck no">×</span> 教育・マネジメントが必要</li>
         </ul>
       </div>
 
-      <!-- B -->
       <div class="compare-col">
-        <div class="compare-col-label">B: SaaS自力連携</div>
-        <h3>マネーフォワード等で自分でやる</h3>
-        <div class="price">月 ¥3,000 〜 ¥10,000</div>
+        <div class="compare-col-label">B: 派遣</div>
+        <h3>経理派遣を起用</h3>
+        <div class="price">月 ¥200,000〜300,000</div>
         <ul>
-          <li><span class="ck ok">○</span> 安価</li>
-          <li><span class="ck warn">△</span> 標準連携は柔軟性に乏しい</li>
-          <li><span class="ck no">×</span> JV紹介料計算など特殊ロジックは別途自分で</li>
-          <li><span class="ck no">×</span> 設定・トラブル対応は自分</li>
-          <li><span class="ck no">×</span> 結局時間は取られる</li>
+          <li><span class="ck ok">○</span> 採用より早く始められる</li>
+          <li><span class="ck warn">△</span> 派遣会社経由の費用</li>
+          <li><span class="ck no">×</span> 担当変更リスク</li>
+          <li><span class="ck no">×</span> 平日昼間しか動かない</li>
+          <li><span class="ck no">×</span> JV計算は別途自分で</li>
         </ul>
       </div>
 
-      <!-- C: Re:Me OPS -->
       <div class="compare-col winner">
         <div class="compare-col-label">C: Re:Me OPS</div>
-        <h3>フルマネージド・自動化</h3>
-        <div class="price">月 ¥150,000（初月のみ ¥300,000）</div>
+        <h3>フルマネージド自動化</h3>
+        <div class="price">月 ¥150,000（初月 ¥300,000）</div>
         <ul>
-          <li><span class="ck ok">◎</span> 設定から運用まで丸投げOK</li>
-          <li><span class="ck ok">◎</span> JV紹介料・特殊ルールも実装</li>
-          <li><span class="ck ok">◎</span> エラー時は1時間以内に自動再試行</li>
+          <li><span class="ck ok">◎</span> 採用・教育コストゼロ</li>
+          <li><span class="ck ok">◎</span> JV紹介料も自動計算</li>
           <li><span class="ck ok">◎</span> 24時間365日休まず稼働</li>
+          <li><span class="ck ok">◎</span> エラー時1時間以内に自動復旧</li>
           <li><span class="ck ok">◎</span> 退職・休職リスクなし</li>
         </ul>
       </div>
@@ -473,41 +557,57 @@
   </div>
 </section>
 
-<!-- 特徴 -->
+<!-- FEATURES -->
 <section class="block">
   <div class="block-inner">
     <div class="block-label">FEATURES</div>
-    <h2 class="block-title">「やってよかった」と感じる、4つの理由</h2>
+    <h2 class="block-title">なぜRe:Me OPSが選ばれるのか</h2>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="icon">⚡</div>
+        <svg class="bg" viewBox="0 0 120 120"><polygon points="60,15 70,40 95,40 75,55 85,85 60,70 35,85 45,55 25,40 50,40" fill="url(#fg1)"/><defs><linearGradient id="fg1"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs></svg>
+        <div class="icon-circle">⚡</div>
         <div class="head">完全自動・24時間止まらない</div>
-        <div class="body">Cloudflareのインフラ上で動くので、深夜の決済も瞬時に記帳。サーバー保守も不要。</div>
+        <div class="body">Cloudflareの世界規模のインフラ上で稼働。深夜の決済も瞬時に記帳。サーバー保守も電源管理も不要。あなたが寝てる間も働き続けます。</div>
       </div>
       <div class="feature-card">
-        <div class="icon">🔄</div>
+        <svg class="bg" viewBox="0 0 120 120"><circle cx="60" cy="60" r="45" fill="none" stroke="url(#fg2)" stroke-width="6"/><path d="M60 30 L60 60 L80 70" stroke="url(#fg2)" stroke-width="6" fill="none"/><defs><linearGradient id="fg2"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs></svg>
+        <div class="icon-circle">🔄</div>
         <div class="head">エラー時の自動再試行</div>
-        <div class="body">freeeの一時障害で記帳に失敗しても、1時間ごとに自動でリトライ。あなたが気付かないうちに直る。</div>
+        <div class="body">freeeの一時障害で記帳に失敗しても、Re:Me OPS が1時間ごとに自動でリトライ。あなたが気付かないうちに勝手に直る、強い設計。</div>
       </div>
       <div class="feature-card">
-        <div class="icon">🤝</div>
+        <svg class="bg" viewBox="0 0 120 120"><circle cx="40" cy="55" r="18" fill="url(#fg3)"/><circle cx="80" cy="55" r="18" fill="url(#fg3)"/><rect x="35" y="70" width="50" height="20" rx="5" fill="url(#fg3)"/><defs><linearGradient id="fg3"><stop stop-color="#ff5ad2"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs></svg>
+        <div class="icon-circle">🤝</div>
         <div class="head">JV紹介料の自動計算</div>
-        <div class="body">紹介パートナーごとに料率を設定すれば、毎月の紹介料も自動計算。Excelとはおさらば。</div>
+        <div class="body">紹介パートナーごとに料率を設定すれば、決済が来るたびに紹介料を自動計算。Excelとも、手計算ともおさらば。階層型・固定額＋％にも対応。</div>
       </div>
       <div class="feature-card">
-        <div class="icon">📊</div>
+        <svg class="bg" viewBox="0 0 120 120"><rect x="20" y="20" width="80" height="80" rx="8" fill="none" stroke="url(#fg4)" stroke-width="4"/><line x1="30" y1="40" x2="90" y2="40" stroke="url(#fg4)" stroke-width="3"/><line x1="30" y1="55" x2="90" y2="55" stroke="url(#fg4)" stroke-width="3"/><line x1="30" y1="70" x2="60" y2="70" stroke="url(#fg4)" stroke-width="3"/><defs><linearGradient id="fg4"><stop stop-color="#00d4ff"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs></svg>
+        <div class="icon-circle">📊</div>
         <div class="head">専用管理画面で見える化</div>
-        <div class="body">受信した決済・記帳結果・JV計算がリアルタイムで確認できる管理画面付き。</div>
+        <div class="body">受信した決済・記帳結果・JV計算がリアルタイムで確認できる管理画面付き。何が起きてるか一目でわかる。月末の確認も5分で済みます。</div>
+      </div>
+      <div class="feature-card">
+        <svg class="bg" viewBox="0 0 120 120"><path d="M40 20 L80 20 L80 30 L100 60 L80 90 L80 100 L40 100 L40 90 L20 60 L40 30 Z" fill="url(#fg5)"/><defs><linearGradient id="fg5"><stop stop-color="#fbbf24"/><stop offset="1" stop-color="#ff5ad2"/></linearGradient></defs></svg>
+        <div class="icon-circle">🛡</div>
+        <div class="head">セキュアな設計</div>
+        <div class="body">Stripe署名検証で改ざん防止、freeeはOAuth経由で安全に連携。お客様のStripeログイン情報やAPIキーを直接お預かりすることはありません。</div>
+      </div>
+      <div class="feature-card">
+        <svg class="bg" viewBox="0 0 120 120"><circle cx="60" cy="40" r="20" fill="url(#fg6)"/><path d="M30 100 C30 75 90 75 90 100" fill="url(#fg6)"/><defs><linearGradient id="fg6"><stop stop-color="#7c6ee0"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs></svg>
+        <div class="icon-circle">💬</div>
+        <div class="head">運用サポート付き</div>
+        <div class="body">セットアップから運用まで、リミー代表・四戸が直接サポート。設定変更・カスタマイズ・トラブル対応もメール/LINEで随時相談OK。</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 料金 -->
+<!-- PRICING -->
 <section class="block pricing" id="pricing">
   <div class="block-inner" style="text-align:center;">
     <div class="block-label">PRICING</div>
-    <h2 class="block-title">シンプルな1プラン。</h2>
+    <h2 class="block-title">シンプルな1プラン</h2>
     <p class="block-sub">必要な機能は全部入り。あとから料金が増えることはありません。</p>
 
     <div class="price-card" style="text-align:left;">
@@ -524,20 +624,24 @@
       </div>
 
       <div class="price-incl">
-        <strong>含まれているもの</strong><br>
-        ・ Stripe → freee 自動仕訳<br>
-        ・ JV紹介料の自動計算<br>
-        ・ 専用管理画面<br>
-        ・ エラー自動再試行<br>
-        ・ 初期セットアップ・運用サポート<br>
-        ・ クライアント様ごとの個別カスタマイズ<br>
-        ・ 24時間自動稼働
+        <strong>含まれているもの</strong>
+        <ul>
+          <li>Stripe決済の自動取り込み</li>
+          <li>勘定科目の自動振り分け</li>
+          <li>JV紹介料の自動計算</li>
+          <li>freee自動記帳</li>
+          <li>エラー時の自動再試行</li>
+          <li>専用管理画面</li>
+          <li>初期セットアップ・運用サポート</li>
+          <li>カスタマイズ対応（個別ルール）</li>
+          <li>24時間自動稼働</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- お申し込みの流れ -->
+<!-- FLOW -->
 <section class="block">
   <div class="block-inner">
     <div class="block-label">ONBOARDING</div>
@@ -546,28 +650,33 @@
     <div class="flow-steps">
       <div class="flow-step">
         <div class="n">1</div>
+        <div class="em">💬</div>
         <div class="ttl">無料相談</div>
-        <div class="sub">Zoomで30分。<br>Stripe・freee環境を確認</div>
+        <div class="sub">Zoomで30分<br>環境を確認</div>
       </div>
       <div class="flow-step">
         <div class="n">2</div>
+        <div class="em">📝</div>
         <div class="ttl">ご契約</div>
-        <div class="sub">電子契約締結。<br>初月¥300,000のお振込</div>
+        <div class="sub">電子契約<br>初月¥30万入金</div>
       </div>
       <div class="flow-step">
         <div class="n">3</div>
+        <div class="em">🔧</div>
         <div class="ttl">セットアップ</div>
-        <div class="sub">3営業日以内に<br>Re:Me OPS環境を構築</div>
+        <div class="sub">3営業日以内<br>環境構築</div>
       </div>
       <div class="flow-step">
         <div class="n">4</div>
+        <div class="em">🔗</div>
         <div class="ttl">接続</div>
-        <div class="sub">freee・Stripeに<br>5分で接続</div>
+        <div class="sub">freee・Stripe<br>5分で接続</div>
       </div>
       <div class="flow-step">
         <div class="n">5</div>
+        <div class="em">✨</div>
         <div class="ttl">運用開始</div>
-        <div class="sub">あとは自動。<br>月額¥150,000で稼働</div>
+        <div class="sub">あとは自動<br>月¥15万で稼働</div>
       </div>
     </div>
   </div>
@@ -578,6 +687,11 @@
   <div class="block-inner">
     <div class="block-label">FAQ</div>
     <h2 class="block-title">よくある質問</h2>
+
+    <details class="faq-item">
+      <summary>売上規模が小さい/大きい場合でも対応できますか？</summary>
+      <div class="answer">本サービスは月の決済件数が「数十〜数百件」程度のスクール・講座事業者向けに最適化しています。月数千件を超えるEC事業者様などは個別ご相談ください。</div>
+    </details>
 
     <details class="faq-item">
       <summary>freee以外の会計ソフト（マネーフォワード等）にも対応していますか？</summary>
@@ -601,17 +715,17 @@
 
     <details class="faq-item">
       <summary>セキュリティは大丈夫ですか？</summary>
-      <div class="answer">Cloudflare上で稼働、決済情報はStripe署名で検証、freeeはOAuth経由で安全に連携します。お客様のStripe・freeeのアカウント情報を直接お預かりすることはありません。</div>
+      <div class="answer">Cloudflare上で稼働、決済情報はStripe署名で検証、freeeはOAuth経由で安全に連携します。お客様のログイン情報やAPIキーを直接お預かりすることはありません。</div>
     </details>
 
     <details class="faq-item">
       <summary>JV紹介料の計算ルールが特殊でも対応できますか？</summary>
-      <div class="answer">階層型、固定額＋％、月額制など、独自ルールにも対応可能です。無料相談でお伺いした上でお見積もりします。</div>
+      <div class="answer">階層型、固定額＋％、月額制、商品別料率など、独自ルールにも対応可能です。無料相談でお伺いした上でお見積もりします。</div>
     </details>
 
     <details class="faq-item">
-      <summary>サポートはどんな内容ですか？</summary>
-      <div class="answer">運用開始後はメール・LINEで随時サポート。月1回の定例ミーティング（オプション）も対応可能です。設定変更や追加実装のご相談も随時承ります。</div>
+      <summary>税理士さんとはどう連携できますか？</summary>
+      <div class="answer">記帳はすべてfreeeに反映されるので、税理士さんはいつものようにfreee画面で確認・修正できます。記帳代行はリミーで完結、税務判断は税理士さんでとスムーズな分業が可能です。</div>
     </details>
   </div>
 </section>
@@ -619,7 +733,7 @@
 <!-- FINAL CTA -->
 <section class="block final-cta" id="cta">
   <div class="block-inner">
-    <h2>毎月10時間、<br>経理から取り戻しませんか。</h2>
+    <h2>毎月10時間と、月¥10万円。<br>取り戻しませんか？</h2>
     <p>無料相談は30分。Zoomで貴社のStripe・freee環境をお伺いします。<br>セールスはしません、合わなければご縁がなかっただけ。</p>
     <div class="cta-buttons">
       <a href="mailto:miho.shinohe@remenow.com?subject=Re:Me OPS 無料相談希望" class="btn-primary">📧 無料相談を申し込む</a>
