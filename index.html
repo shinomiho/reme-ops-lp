@@ -84,9 +84,9 @@
     .story { background: linear-gradient(135deg, var(--bg-mid), var(--bg)); }
     .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 30px; align-items: stretch; }
     @media (max-width: 768px) { .story-grid { grid-template-columns: 1fr; } }
-    .story-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; position: relative; overflow: hidden; }
-    .story-card.before { border-color: rgba(251,113,133,.3); background: linear-gradient(135deg, rgba(251,113,133,.06), var(--bg-card)); }
-    .story-card.after { border-color: rgba(16,185,129,.4); background: linear-gradient(135deg, rgba(16,185,129,.08), rgba(0,212,255,.04)); }
+    .story-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 0; position: relative; overflow: hidden; }
+    .story-card.before { border-color: rgba(251,113,133,.3); }
+    .story-card.after { border-color: rgba(16,185,129,.4); }
     .story-card .badge {
       display: inline-block; padding: 4px 12px; border-radius: 12px;
       font-size: 10px; font-weight: 900; letter-spacing: 2px;
@@ -94,11 +94,22 @@
     }
     .story-card.before .badge { background: rgba(251,113,133,.2); color: #fda4af; }
     .story-card.after .badge { background: rgba(16,185,129,.2); color: #6ee7b7; }
+    .story-card .photo-wrap { position: relative; height: 240px; overflow: hidden; }
+    .story-card .photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .story-card .photo-wrap .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,10,46,0.1), rgba(12,10,46,0.85)); }
+    .story-card.before .photo-wrap img { filter: brightness(.6) saturate(.7) hue-rotate(330deg); }
+    .story-card.after .photo-wrap img { filter: brightness(.95) saturate(1.1); }
+    .story-card .content { padding: 24px 28px 28px; }
     .story-card h3 { font-size: 18px; font-weight: 900; margin-bottom: 14px; }
-    .story-card p { font-size: 14px; color: var(--text-soft); line-height: 1.9; margin-bottom: 16px; }
-    .story-svg { width: 100%; max-width: 280px; margin: 0 auto 16px; display: block; height: auto; }
-    .story-arrow { display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--accent-light); }
-    @media (max-width: 768px) { .story-arrow { transform: rotate(90deg); padding: 16px 0; } }
+    .story-card p { font-size: 14px; color: var(--text-soft); line-height: 1.9; margin-bottom: 0; }
+    .story-card.accountant { border-color: rgba(251,191,36,.3); margin-top: 32px; }
+    .story-card.accountant .content { padding: 0; }
+    .story-card.accountant .photo-wrap { height: 220px; }
+    .story-card.accountant .photo-wrap img { filter: brightness(.5) saturate(.8) hue-rotate(20deg); }
+    .accountant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    @media (max-width: 768px) { .accountant-grid { grid-template-columns: 1fr; } }
+    .accountant-grid .body { padding: 28px 32px; }
+    .accountant-grid h3 { font-size: 18px; font-weight: 900; margin-bottom: 14px; }
 
     /* PRODUCT PREVIEW */
     .preview { background: var(--bg-mid); }
@@ -493,154 +504,32 @@
     <div class="story-grid">
       <!-- BEFORE -->
       <div class="story-card before">
-        <span class="badge">BEFORE</span>
-
-        <!-- 困っている経営者のイラスト -->
-        <svg class="story-svg" viewBox="0 0 280 240" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="bgB" x1="0" y1="0" x2="0" y2="1">
-              <stop stop-color="#3f1d2a"/><stop offset="1" stop-color="#1a1640"/>
-            </linearGradient>
-          </defs>
-          <rect width="280" height="240" fill="url(#bgB)" rx="12"/>
-
-          <!-- 散らばる書類 -->
-          <g opacity="0.7">
-            <rect x="14" y="180" width="40" height="50" rx="2" fill="#fff" transform="rotate(-15 34 205)"/>
-            <line x1="22" y1="195" x2="48" y2="190" stroke="#999" stroke-width="1"/>
-            <line x1="22" y1="202" x2="48" y2="197" stroke="#999" stroke-width="1"/>
-            <line x1="22" y1="209" x2="44" y2="204" stroke="#999" stroke-width="1"/>
-          </g>
-          <g opacity="0.7">
-            <rect x="220" y="180" width="40" height="50" rx="2" fill="#fff" transform="rotate(20 240 205)"/>
-            <line x1="226" y1="195" x2="252" y2="200" stroke="#999" stroke-width="1"/>
-            <line x1="226" y1="203" x2="252" y2="208" stroke="#999" stroke-width="1"/>
-          </g>
-
-          <!-- デスク -->
-          <rect x="30" y="170" width="220" height="8" rx="2" fill="rgba(255,255,255,0.1)"/>
-
-          <!-- 中央：困った人物 -->
-          <!-- 体 -->
-          <ellipse cx="140" cy="200" rx="50" ry="12" fill="rgba(0,0,0,0.2)"/>
-          <path d="M100 170 Q100 130 140 130 Q180 130 180 170 Z" fill="#7c6ee0"/>
-
-          <!-- 頭 -->
-          <circle cx="140" cy="110" r="34" fill="#fde8d0"/>
-
-          <!-- 髪（ボブ） -->
-          <path d="M106 110 Q106 82 140 78 Q174 82 174 110 Q174 100 168 96 Q172 90 168 85 Q160 78 140 78 Q120 78 112 85 Q108 90 112 96 Q106 100 106 110 Z" fill="#3a2820"/>
-
-          <!-- 困った目（︶ ︶） -->
-          <path d="M127 110 Q130 113 133 110" stroke="#3a2820" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M147 110 Q150 113 153 110" stroke="#3a2820" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <!-- 困った眉（八の字） -->
-          <path d="M124 102 L132 105" stroke="#3a2820" stroke-width="2" stroke-linecap="round"/>
-          <path d="M156 102 L148 105" stroke="#3a2820" stroke-width="2" stroke-linecap="round"/>
-          <!-- 困った口 -->
-          <path d="M133 124 Q140 120 147 124" stroke="#3a2820" stroke-width="2" fill="none" stroke-linecap="round"/>
-
-          <!-- 頭に手 -->
-          <circle cx="110" cy="92" r="9" fill="#fde8d0"/>
-          <path d="M110 92 L122 110" stroke="#fde8d0" stroke-width="8" stroke-linecap="round"/>
-
-          <!-- 汗 -->
-          <ellipse cx="170" cy="98" rx="3" ry="6" fill="#5ee0ff" opacity="0.8"/>
-          <ellipse cx="166" cy="115" rx="2.5" ry="5" fill="#5ee0ff" opacity="0.6"/>
-
-          <!-- 頭の周りの「？」「!」 -->
-          <text x="50" y="55" font-size="24" fill="#ff5ad2" font-weight="900">!</text>
-          <text x="220" y="40" font-size="22" fill="#fbbf24" font-weight="900">?</text>
-          <text x="70" y="35" font-size="18" fill="#fb7185" font-weight="900">?</text>
-          <text x="200" y="65" font-size="20" fill="#fb7185" font-weight="900">!</text>
-
-          <!-- 時計（深夜） -->
-          <circle cx="240" cy="35" r="20" fill="#1a1640" stroke="#fff" stroke-width="2"/>
-          <line x1="240" y1="35" x2="240" y2="22" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-          <line x1="240" y1="35" x2="248" y2="35" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-
-        <h3>毎月、経理に時間を奪われる経営者</h3>
-        <p>
-          月末・月初、Stripeとfreeeを行き来して仕訳作業。<br>
-          紹介料の計算をExcelで…気付けば深夜。<br>
-          「本当は事業に集中したいのに」が口癖。
-        </p>
+        <div class="photo-wrap">
+          <img src="https://images.unsplash.com/photo-1758611972036-cd42a3175aa6?w=800&h=600&fit=crop&auto=format&q=80" alt="経理に追われて困っている経営者" loading="lazy">
+          <div class="overlay"></div>
+        </div>
+        <div class="content">
+          <span class="badge">BEFORE</span>
+          <h3>毎月、経理に時間を奪われる経営者</h3>
+          <p>
+            月末・月初、Stripeとfreeeを行き来して仕訳作業。<br>
+            紹介料の計算をExcelで…気付けば深夜。<br>
+            「本当は事業に集中したいのに」が口癖。
+          </p>
+        </div>
       </div>
 
-      <!-- 矢印（モバイル用） -->
-      <div style="display:contents;">
-        <!-- AFTER -->
-        <div class="story-card after">
+      <!-- AFTER -->
+      <div class="story-card after">
+        <div class="photo-wrap">
+          <img src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?w=800&h=600&fit=crop&auto=format&q=80" alt="経理から解放された笑顔の経営者" loading="lazy">
+          <div class="overlay"></div>
+        </div>
+        <div class="content">
           <span class="badge">AFTER</span>
-
-          <!-- 笑顔の経営者イラスト -->
-          <svg class="story-svg" viewBox="0 0 280 240" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="bgA" x1="0" y1="0" x2="0" y2="1">
-                <stop stop-color="#1a4a3a"/><stop offset="1" stop-color="#0c2e36"/>
-              </linearGradient>
-              <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.4"/>
-                <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <rect width="280" height="240" fill="url(#bgA)" rx="12"/>
-
-            <!-- 朝日 -->
-            <circle cx="220" cy="50" r="60" fill="url(#sunGlow)"/>
-            <circle cx="220" cy="50" r="18" fill="#fbbf24"/>
-
-            <!-- 観葉植物 -->
-            <g>
-              <rect x="30" y="170" width="20" height="20" rx="2" fill="#8b6f5c"/>
-              <ellipse cx="40" cy="160" rx="14" ry="20" fill="#10b981"/>
-              <ellipse cx="35" cy="150" rx="8" ry="14" fill="#34d399"/>
-              <ellipse cx="45" cy="155" rx="8" ry="12" fill="#34d399"/>
-            </g>
-
-            <!-- デスク -->
-            <rect x="60" y="170" width="200" height="8" rx="2" fill="rgba(255,255,255,0.15)"/>
-
-            <!-- 中央：笑顔の人物 -->
-            <ellipse cx="160" cy="200" rx="50" ry="12" fill="rgba(0,0,0,0.2)"/>
-            <path d="M120 170 Q120 130 160 130 Q200 130 200 170 Z" fill="#10b981"/>
-
-            <!-- 頭 -->
-            <circle cx="160" cy="110" r="34" fill="#fde8d0"/>
-
-            <!-- 髪（ボブ） -->
-            <path d="M126 110 Q126 82 160 78 Q194 82 194 110 Q194 100 188 96 Q192 90 188 85 Q180 78 160 78 Q140 78 132 85 Q128 90 132 96 Q126 100 126 110 Z" fill="#3a2820"/>
-
-            <!-- 笑顔の目（˄ ˄） -->
-            <path d="M147 107 Q150 102 153 107" stroke="#3a2820" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <path d="M167 107 Q170 102 173 107" stroke="#3a2820" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <!-- 眉（普通） -->
-            <line x1="146" y1="98" x2="156" y2="98" stroke="#3a2820" stroke-width="2" stroke-linecap="round"/>
-            <line x1="164" y1="98" x2="174" y2="98" stroke="#3a2820" stroke-width="2" stroke-linecap="round"/>
-            <!-- ニッコリ口 -->
-            <path d="M150 124 Q160 134 170 124" stroke="#3a2820" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <!-- ほっぺ -->
-            <circle cx="138" cy="120" r="3" fill="#ff8aa0" opacity="0.6"/>
-            <circle cx="182" cy="120" r="3" fill="#ff8aa0" opacity="0.6"/>
-
-            <!-- コーヒーカップを持つ手 -->
-            <circle cx="124" cy="148" r="9" fill="#fde8d0"/>
-            <rect x="116" y="142" width="16" height="14" rx="2" fill="#a78bfa"/>
-            <path d="M132 144 Q140 142 140 148 Q140 154 132 152" stroke="#a78bfa" stroke-width="2" fill="none"/>
-            <!-- コーヒーの湯気 -->
-            <path d="M120 130 Q122 126 120 122" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
-            <path d="M126 130 Q128 126 126 122" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
-
-            <!-- 周りに ♥, ✓ -->
-            <text x="60" y="80" font-size="20" fill="#fb7185" font-weight="900">♥</text>
-            <text x="80" y="55" font-size="16" fill="#10b981" font-weight="900">✓</text>
-            <text x="50" y="120" font-size="14" fill="#10b981" font-weight="900">✓</text>
-          </svg>
-
           <h3>経営に集中する、笑顔の経営者</h3>
           <p>
-            朝のコーヒーを飲みながら、Re:Me OPS が前日に処理した仕訳をチェック。<br>
+            朝のコーヒーを飲みながら、Re:Me OPSが前日に処理した仕訳をチェック。<br>
             5分で終わる。<br>
             <strong style="color:#6ee7b7;">あとの時間は、事業のために使える。</strong>
           </p>
@@ -648,105 +537,30 @@
       </div>
     </div>
 
-    <!-- 経理担当者のイラスト -->
-    <div style="margin-top:32px;">
-      <div class="story-card before" style="border-color:rgba(251,191,36,.3);background:linear-gradient(135deg,rgba(251,191,36,.05),var(--bg-card));">
-        <span class="badge" style="background:rgba(251,191,36,.2);color:#fcd34d;">AND THE ACCOUNTANT</span>
-        <h3 style="margin-bottom:18px;">採用や派遣しても、結局そっちも疲弊する</h3>
-
-        <div style="display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:center;">
-          <!-- 経理スタッフのイラスト -->
-          <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:280px;">
-            <defs>
-              <linearGradient id="bgAcc" x1="0" y1="0" x2="0" y2="1">
-                <stop stop-color="#2d2a3a"/><stop offset="1" stop-color="#1a1640"/>
-              </linearGradient>
-            </defs>
-            <rect width="280" height="200" fill="url(#bgAcc)" rx="12"/>
-
-            <!-- モニター2台 -->
-            <g>
-              <rect x="20" y="40" width="100" height="70" rx="4" fill="#0c0a2e" stroke="rgba(255,255,255,0.2)"/>
-              <rect x="25" y="45" width="90" height="60" rx="2" fill="#1a1a3a"/>
-              <line x1="30" y1="55" x2="50" y2="55" stroke="#a78bfa" stroke-width="2"/>
-              <line x1="55" y1="55" x2="100" y2="55" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-              <line x1="30" y1="65" x2="100" y2="65" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-              <line x1="30" y1="75" x2="80" y2="75" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-              <line x1="30" y1="85" x2="100" y2="85" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-              <!-- エラー表示（赤） -->
-              <circle cx="105" cy="50" r="4" fill="#fb7185"/>
-              <rect x="60" y="60" width="50" height="20" fill="rgba(251,113,133,0.3)" stroke="#fb7185"/>
-            </g>
-            <rect x="60" y="110" width="20" height="6" fill="#0c0a2e"/>
-            <rect x="50" y="115" width="40" height="3" fill="#0c0a2e"/>
-
-            <g>
-              <rect x="160" y="40" width="100" height="70" rx="4" fill="#0c0a2e" stroke="rgba(255,255,255,0.2)"/>
-              <rect x="165" y="45" width="90" height="60" rx="2" fill="#1a1a3a"/>
-              <line x1="170" y1="55" x2="250" y2="55" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-              <line x1="170" y1="65" x2="240" y2="65" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-              <line x1="170" y1="75" x2="250" y2="75" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-              <rect x="170" y="85" width="20" height="16" fill="#10b981" opacity="0.5"/>
-              <rect x="195" y="85" width="15" height="16" fill="#a78bfa" opacity="0.5"/>
-              <rect x="215" y="85" width="25" height="16" fill="#00d4ff" opacity="0.5"/>
-            </g>
-            <rect x="200" y="110" width="20" height="6" fill="#0c0a2e"/>
-            <rect x="190" y="115" width="40" height="3" fill="#0c0a2e"/>
-
-            <!-- デスク -->
-            <rect x="0" y="130" width="280" height="6" fill="rgba(255,255,255,0.1)"/>
-
-            <!-- 経理スタッフ（疲れた） -->
-            <ellipse cx="140" cy="180" rx="30" ry="6" fill="rgba(0,0,0,0.3)"/>
-            <path d="M120 175 Q120 150 140 150 Q160 150 160 175 Z" fill="#fbbf24"/>
-            <circle cx="140" cy="140" r="18" fill="#fde8d0"/>
-            <!-- 髪（ポニーテール） -->
-            <path d="M122 140 Q122 124 140 122 Q158 124 158 140 Q158 132 154 128 Q150 122 140 122 Q130 122 126 128 Q122 132 122 140 Z" fill="#3a2820"/>
-            <!-- 疲れた目（半眼） -->
-            <line x1="131" y1="138" x2="137" y2="138" stroke="#3a2820" stroke-width="2" stroke-linecap="round"/>
-            <line x1="143" y1="138" x2="149" y2="138" stroke="#3a2820" stroke-width="2" stroke-linecap="round"/>
-            <!-- 隈 -->
-            <path d="M131 142 Q134 144 137 142" stroke="#3a2820" stroke-width="1" fill="none" opacity="0.5"/>
-            <path d="M143 142 Q146 144 149 142" stroke="#3a2820" stroke-width="1" fill="none" opacity="0.5"/>
-            <!-- 真一文字の口 -->
-            <line x1="135" y1="148" x2="145" y2="148" stroke="#3a2820" stroke-width="1.5" stroke-linecap="round"/>
-
-            <!-- 書類の山 -->
-            <g transform="translate(15,125)">
-              <rect width="22" height="3" fill="#fff" opacity="0.8"/>
-              <rect y="-3" width="22" height="3" fill="#fff" opacity="0.8"/>
-              <rect y="-6" width="22" height="3" fill="#fff" opacity="0.8"/>
-              <rect y="-9" width="22" height="3" fill="#fff" opacity="0.8"/>
-            </g>
-            <g transform="translate(243,128)">
-              <rect width="22" height="2" fill="#fff" opacity="0.8"/>
-              <rect y="-2" width="22" height="2" fill="#fff" opacity="0.8"/>
-              <rect y="-4" width="22" height="2" fill="#fff" opacity="0.8"/>
-            </g>
-
-            <!-- コーヒー -->
-            <rect x="100" y="118" width="10" height="12" rx="1" fill="#8b6f5c"/>
-            <rect x="170" y="120" width="9" height="10" rx="1" fill="#8b6f5c"/>
-
-            <!-- ため息 -->
-            <text x="170" y="115" font-size="14" fill="rgba(255,255,255,0.5)">.zZ</text>
-          </svg>
-
-          <div>
-            <ul style="list-style:none;padding:0;font-size:13px;color:var(--text-soft);line-height:2;">
-              <li>📅 月末に集中する仕訳作業</li>
-              <li>🖥 Stripe・freeeを行ったり来たり</li>
-              <li>📊 Excelで紹介料を手計算</li>
-              <li>⚠️ ミスの恐怖でいつも気を張る</li>
-              <li>🏃 でも、人を雇った分の生産性は出ない</li>
-            </ul>
-            <p style="margin-top:14px;font-size:13px;color:#fcd34d;line-height:1.85;">
-              <strong>Re:Me OPS なら、この役割を機械が担うので、人は要らなくなります。</strong>
-            </p>
-          </div>
+    <!-- 経理担当者 -->
+    <div class="story-card accountant">
+      <div class="accountant-grid">
+        <div class="photo-wrap">
+          <img src="https://images.unsplash.com/photo-1707902665498-a202981fb5ac?w=800&h=600&fit=crop&auto=format&q=80" alt="経理スタッフも結局疲弊する" loading="lazy">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <span class="badge" style="background:rgba(251,191,36,.2);color:#fcd34d;">AND THE ACCOUNTANT</span>
+          <h3>採用や派遣しても、結局そっちも疲弊する</h3>
+          <ul style="list-style:none;padding:0;font-size:13px;color:var(--text-soft);line-height:2;">
+            <li>📅 月末に集中する仕訳作業</li>
+            <li>🖥 Stripe・freeeを行ったり来たり</li>
+            <li>📊 Excelで紹介料を手計算</li>
+            <li>⚠️ ミスの恐怖でいつも気を張る</li>
+            <li>🏃 でも、人を雇った分の生産性は出ない</li>
+          </ul>
+          <p style="margin-top:14px;font-size:13px;color:#fcd34d;line-height:1.85;">
+            <strong>Re:Me OPSなら、この役割を機械が担うので、人は要らなくなります。</strong>
+          </p>
         </div>
       </div>
     </div>
+
 
   </div>
 </section>
